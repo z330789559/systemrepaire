@@ -1,0 +1,25 @@
+<div class="ui buttom attached active tab segment">
+  <div class="ui list">
+    <% var topicsLen= topics.length;%>
+    <% topics.forEach(function (topic,index) {%>
+      <div class="item">
+        <a href="/use/<%=topic.user.name%>" class="ui image">
+          <img src="<%=:topic.user.email | gravator%>" alt="">
+        </a>
+        <div class="content">
+          <a href="/topic/<%=topic._id%>" class="header">
+            <%=topic.title%>
+          </a>
+          <p class="topic">
+            <a href="/user/<%=topic.user.name%>"><b><%=topic.user.name%></b></a>发起啦话题 * <%=topic.pv%>次浏览 * <%=topic.comment%>
+          个回复* <%=:topic.update_at|fromNow%> * <%=topic.tab%>
+          </p>
+
+        </div>
+      </div>
+    <% if(topicsLen > index+1){%>
+    <div class="ui divider"></div>
+    <%}%>
+    <%})%>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+
+<% include header%>
+<% var curSection="orderAdmin",
+        curPage="allOrder",count = yield $Order.getAllOrderCount()%>
+<div class="container">
+  <div class="ui two column centered grid">
+    <div class=" floated left aligned four wide column">
+      <%include partials/menu%>
+    </div>
+
+    <div class="right floated twelve wide column" style="overflow: hidden;text-align: right">
+      <table class="ui celled table">
+        <thead>
+        <tr>
+          <th>设备</th>
+          <th>操作员</th>
+          <th>创建时间</th>
+          <th>故障原因</th>
+          <th>组别</th>
+          <th>维修方式</th>
+          <th>评分</th>
+          <th>维修员</th>
+          <th>维修时间</th>
+          <th>操作</th>
+        </tr></thead>
+        <tbody>
+        <% orders.forEach(function (item) {%>
+        <tr>
+          <td><%=item.title%></td>
+          <td><%=item.operator.name%></td>
+          <td><%=:item.create_at|fromNow%></td>
+          <td><%=item.reasonCode||""%></td>
+          <td><%=item.operator.group||""%></td>
+          <td><%=item.repaireMethod||""%></td>
+          <td><%if(item.score==6) {%>未评价<%}else{%><%=item.score%><%};%></td>
+          <td><%=item.repairor||""%></td>
+          <td><%=:item.update_at|fromNow%></td>
+          <td><a href="/orderAdmin/delete/<%=item._id%>">删除</a></td>
+        </tr>
+        <%});%>
+        </tbody>
+      </table>
+      <%include partials/pagination%>
+    </div>
+  </div>
+
+</div>
+
+<%include footer%>

@@ -1,0 +1,42 @@
+
+<div class="ui styled accordion">
+  <div class="title">
+    <i class="dropdown icon"></i>
+   账户管理
+  </div>
+  <div class="content<% if(curSection=="user"){%> active <%};%>">
+    <div class="ui link list" style="padding-left: 1rem;font-size: 0.8em">
+      <a class="item <% if(curPage=="userlist"){%> active <%};%>" href="/user/user-list">账户列表</a>
+      <a class="item" href="/signup">添加用户</a>
+      <a class="item <% if(curPage=="userGroup"){%> active <%};%>" href="/user/grouplist">组别</a>
+    </div>
+  </div>
+  <div class="title">
+    <i class="dropdown icon"></i>
+    维修管理 </div>
+  <div class="content <% if(curSection=='orderAdmin'){%> active <%};%>">
+    <div class="ui link list" style="padding-left: 1rem;font-size: 0.8em">
+      <a class="item <% if(curPage=='allOrder'){ %> active <%};%>"  href="/orderAdmin/allOrder">维修单列表</a>
+      <a class="item <% if(curPage=='reason'){ %> active <%};%>" href="/reason">维故障原因</a>
+        <a class="item">每种类型的故障时间</a>
+        <a class="item">每种针车的故障时间</a>
+        <a class="item">故障维修时间</a>
+        <a class="item">抢单人员</a>
+    </div>
+  </div>
+  <div class="title">
+    <i class="dropdown icon"></i>
+    评价管理 </div>
+  <div class="content">
+    <div class="ui link list" style="padding-left: 1rem; font-size: 0.8em">
+      <a class="item">评分统计</a>
+    </div>
+  </div>
+</div>
+<script>
+$(".accordion .title").click(function () {
+  var context=$(this).next(".content")
+  context.addClass("active");
+  context.siblings(".content").removeClass("active")
+})
+</script>

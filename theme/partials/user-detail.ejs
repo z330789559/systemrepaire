@@ -1,0 +1,23 @@
+
+
+      <table class="ui celled table">
+        <thead>
+        <tr>
+          <th>姓名</th>
+          <th>性别</th>
+          <th>账户类型</th>
+          <th>组别</th>
+          <th>个性签名</th>
+
+        </tr></thead>
+        <tbody>
+        <tr>
+          <td><%=User.name%></td>
+          <td><%=User.gender||""%></td>
+          <td><%=User.account_type%></td>
+          <td><%=User.group||""%></td>
+          <td><%=User.signature||""%></td>
+
+        </tr>
+        </tbody>
+      </table>

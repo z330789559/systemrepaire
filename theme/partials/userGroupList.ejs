@@ -1,0 +1,18 @@
+<a class="ui basic button right" href="/user/groupadd">添加组别</a>
+<table class="ui celled table">
+  <thead>
+  <tr>
+    <th>名称</th>
+    <th>时间</th>
+    <th>操作</th>
+  </tr></thead>
+  <tbody>
+  <% groups.forEach(function (item) {%>
+  <tr>
+    <td><%=item.content%></td>
+    <td><%=:item.create_at|fromNow%></td>
+    <td><a href="/user/group/<%=item._id%>">删除</a></td>
+  </tr>
+  <%});%>
+  </tbody>
+</table>

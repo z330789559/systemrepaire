@@ -1,0 +1,76 @@
+<% include header %>
+<div class="container">
+    <div class="ui form segment" style="width:400px;margin: 40px auto">
+        <form action="" method="post">
+            <div class="two field">
+                <div class="field required">
+                    <label for="">用户名</label>
+                    <input type="text" placeholder="用户名" name="name">
+                </div>
+                <div class="field">
+                    <label for="">性别</label>
+                    <div class="ui selection dropdown">
+                        <div class="default text">选择性别</div>
+                        <i class="dropdown icon"></i>
+                        <input type="hidden" name="gender">
+                        <div class="menu">
+                            <div class="item" data-value="男">男</div>
+                            <div class="item" data-value="女">女</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="two field">
+                <div class="field required">
+                    <label for="">密码</label>
+                    <input type="password" placeholder="密码" name="password">
+                </div><div class="field required">
+                    <label for="">重复密码</label>
+                    <input type="password" placeholder="重复密码" name="re_password">
+                </div>
+
+            </div>
+            <div class="field">
+                <label for="">邮箱</label>
+                <input type="email" placeholder="邮箱" name="email">
+            </div>
+            <div class="field">
+                <label for="">组别</label>
+                <div class="ui selection dropdown">
+                    <div class="default text">选择组别</div>
+                    <i class="dropdown icon"></i>
+                    <input type="hidden" name="group">
+                    <div class="menu">
+                        <% groups.forEach(function (item) {%>
+                        <div class="item" data-value="<%=item.content%>"><%=item.content%></div>
+                        <%});%>
+
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <label for="">账户类型</label>
+                <div class="ui selection dropdown">
+                    <div class="default text">选择类型</div>
+                    <i class="dropdown icon"></i>
+                    <input type="hidden" name="account_type">
+                    <div class="menu">
+                        <div class="item" data-value="操作员">操作员</div>
+                        <div class="item" data-value="维修员">维修员</div>
+                        <div class="item" data-value="管理员">管理员</div>
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <label for="">个人签名</label>
+                <input type="text" placeholder="限制在50个字以内"  name="signature">
+            </div>
+            <input type="submit" value="注册" class="ui button fluid">
+        </form>
+
+    </div>
+    <script>
+        $(".ui.dropdown").dropdown();
+    </script>
+    <% include footer%>
+</div>

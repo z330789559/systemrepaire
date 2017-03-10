@@ -1,0 +1,40 @@
+<div class="ui segment">
+  <div class="ui comments">
+    <h3 class="ui header">
+      评论
+    </h3>
+    <div class="ui divider">  </div>
+
+      <% comments.forEach(function (comment) {%>
+        <div class="comment">
+          <a href="/use/<% comment.user.name %>" class="avatar">
+            <img src="<%=: comment.user.email | gravator %>">
+          </a>
+        <div class="content">
+          <a href="/use/<%=comment.user.name %>" class="author">
+            <%=comment.user.name %>
+            </a>
+
+          <div class="metadata">
+            <span class="date">
+              <%=:comment.update_at| fromNow%>
+            </span>
+          </div>
+              <div class="text">
+                <%-:comment.content| markdown%>
+              </div>
+        </div>
+        </div>
+     <% })%>
+      <% if ($this.session.user){%>
+      <form action="" method="post" class="ui replay form">
+        <input type="hidden" name="topic_id" value="<%=topic._id%>">
+        <div class="field">
+          <textarea name="content" id="" cols="30" rows="10"></textarea>
+        </div>
+        <input type="submit" value="留言" class="ui button">
+      </form>
+      <%}%>
+
+  </div>
+</div>
