@@ -1,0 +1,51 @@
+
+<% include header%>
+<% var curSection="comment",
+        curPage="ordersCountByScore"%>
+<div class="container">
+  <div class="ui two column centered grid">
+    <div class=" floated left aligned four wide column">
+      <%include partials/menu%>
+    </div>
+
+    <div class="right floated twelve wide column" style="overflow: hidden;text-align: right">
+      <form method="post">
+      <div class="ui form">
+        <div class="four fields">
+          <div class="field">
+            <label>开始时间</label>
+            <input type="date" name="start" placeholder="选择开始时间">
+          </div>
+          <div class="field">
+            <label>结束时间</label>
+            <input type="date" name="end" placeholder="选择结束时间">
+          </div>
+          <div class="field" style="padding-top: 20px;">
+            <button class="ui submit button">Submit</button>
+          </div>
+        </div>
+      </div>
+      </form>
+      <!--<a class="ui basic button right" href="/orderAdmin/exportToExcelByTitle">导出数据</a>-->
+      <table class="ui celled table">
+        <thead>
+        <tr>
+          <th>维修员</th>
+          <th>总评分</th>
+          <!--<th>次数</th>-->
+        </tr></thead>
+        <tbody>
+        <% result.forEach(function (item) {%>
+        <tr>
+          <td><%=item.repairor%></td>
+          <td><%=item.score%></td>
+        </tr>
+        <%});%>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<%include footer%>

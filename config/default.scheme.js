@@ -66,6 +66,16 @@ module.exports={
             "body":checkCreateBody
         }
     },
+    "POST /orderCountByReasonCode":{
+        "request":{
+            "body":checkReasonBody
+        }
+    },
+    "POST /orderTimeByEachCatalog":{
+        "request":{
+            "body":checkReasonBody
+        }
+    },
     "POST /topic/:id":{
         "request":{
             "session":checkLogin,
@@ -204,7 +214,23 @@ function checkSigninBody() {
     body.password=md5(validator.trim(body.password))
     return true
 }
-
+function checkReasonBody() {
+    var body=this.request.body;
+    var flash;
+    if(!body ||!body.start){
+        flash={error:"请选择开始时间"}
+    } else if(!body.end){
+        flash={error:"请选择结束时间"}
+    }
+    if(flash){
+        this.flash=flash
+        this.redirect('back')
+        return false
+    }
+    body.start=validator.trim(body.start)
+    body.end=md5(validator.trim(body.end))
+    return true
+}
 function checkSignupBody() {
     var body=this.request.body;
     var flash;

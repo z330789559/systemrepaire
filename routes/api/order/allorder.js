@@ -14,7 +14,7 @@ exports.get=function* () {
             error:""
         }
 
-        var orders=yield $Order.getAllOrders((pageIndex-1) * 10)
+        var orders=yield $Order.getAllOrdersApi((pageIndex-1) * 10)
         result.orders=orders;
         return yield this.body=result
 

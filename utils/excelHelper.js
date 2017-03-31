@@ -24,7 +24,6 @@ exports.readData =function (path){
             }
         });
     }).then(function(data){
-        console.log(data);
         return data;
     },function(err){
         console.log(err);
@@ -51,13 +50,12 @@ excel.prototype.createExcel=function(params){
             }
         });
     }).then(function(data){
-        console.log(data);
         return data;
     },function(err){
         console.log(err);
         return err;
     });
-    
+
 }
 /**
  * 计算上次的断点信息

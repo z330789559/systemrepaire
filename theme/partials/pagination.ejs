@@ -3,24 +3,32 @@
  <%
   var pages=Math.ceil(count /10)
   var page=+$this.query.pageIndex||1;
-
+   var link=$this.request.url
+  link=link.indexOf("?")>-1?link:link+"?"
+  if(link.indexOf("pageIndex")>-1){
+      link=  link.replace(/pageIndex=\d+/,"")
+  }
+  if(link.indexOf("&")>-1){
+      if( link.lastIndexOf("&")!=link.length-1){
+          link=link+"&"
+      }
+  }
   var items=[page-2,page-1,page,page+1,page+2]
-  var prePage='?pageIndex='+(page -1)
-  var nextPage='?pageIndex'+(page+ 1)
+
   %>
 <div class="ui pagination menu">
   <% if(page && page >1){%>
-  <a href="?pageIndex=<%= page-1%>" class="icon item">
+  <a href="<%=link%>pageIndex=<%= page-1%>" class="icon item">
     <i class="left arrow icon"></i>
   </a>
   <%}%>
   <% items.forEach(function (item) {%>
     <%if (item && (item >0) && (item <=pages) && (pages >1)){%>
-  <a href="?pageIndex=<% item%>" class="<%=(page==item)?'active':''%>"><%=item%></a>
+  <a href="<%=link%>pageIndex=<% item%>" class="<%=(page==item)?'active':''%>"><%=item%></a>
   <%}%>
   <%})%>
   <% if(page && page <pages){%>
-  <a href="?pageIndex=<%= page+1%>" class="icon item">
+  <a href="<%=link%>pageIndex=<%= page+1%>" class="icon item">
     <i class="right arrow icon"></i>
   </a>
   <%}%>

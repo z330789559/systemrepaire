@@ -1,7 +1,7 @@
 
 <% include header%>
 <% var curSection="orderAdmin",
-        curPage="allOrder",count = yield $Order.getAllOrderCount()%>
+        curPage="allOrder",count = dataLength%>
 <div class="container">
   <div class="ui two column centered grid">
     <div class=" floated left aligned four wide column">
@@ -9,32 +9,65 @@
     </div>
 
     <div class="right floated twelve wide column" style="overflow: hidden;text-align: right">
+      <form method="get" id="subform">
+        <div class="ui form">
+          <div class="four fields">
+            <div class="field">
+              <label>开始时间</label>
+              <input type="date" name="start" placeholder="选择开始时间" value="<%=start%>">
+            </div>
+            <div class="field">
+              <label>结束时间</label>
+              <input type="date" name="end" placeholder="选择结束时间" value="<%=end%>">
+            </div>
+            <div class="field" style="padding-top: 20px;">
+              <a class="ui basic button right" onclick="searchData()">Submit</a>
+              <a class="ui basic button right" onclick="exportData()">导出数据</a>
+            </div>
+          </div>
+        </div>
+      </form>
+
       <table class="ui celled table">
         <thead>
+        <!--{caption:'设备', type:'string'},-->
+        <!--{caption:'操作员', type:'string'},-->
+        <!--{caption:'报修时间', type:'string'},-->
+        <!--{caption:'组别', type:'string'},-->
+        <!--{caption:'维修方式', type:'string'},-->
+        <!--{caption:'评分', type:'number'},-->
+        <!--{caption:'维修员', type:'string'},-->
+        <!--{caption:'抢单时间', type:'string'},-->
+        <!--{caption:'完成时间', type:'string'},-->
+        <!--{caption:'故障间隔', type:'string'}-->
         <tr>
           <th>设备</th>
           <th>操作员</th>
-          <th>创建时间</th>
-          <th>故障原因</th>
+          <th>报修时间</th>
           <th>组别</th>
+          <th>故障原因</th>
           <th>维修方式</th>
           <th>评分</th>
           <th>维修员</th>
-          <th>维修时间</th>
+          <th>抢单时间</th>
+          <th>完成时间</th>
+          <th>故障间隔</th>
           <th>操作</th>
         </tr></thead>
         <tbody>
         <% orders.forEach(function (item) {%>
         <tr>
-          <td><%=item.title%></td>
-          <td><%=item.operator.name%></td>
-          <td><%=:item.create_at|fromNow%></td>
-          <td><%=item.reasonCode||""%></td>
-          <td><%=item.operator.group||""%></td>
-          <td><%=item.repaireMethod||""%></td>
-          <td><%if(item.score==6) {%>未评价<%}else{%><%=item.score%><%};%></td>
-          <td><%=item.repairor||""%></td>
-          <td><%=:item.update_at|fromNow%></td>
+          <td><%=item[0]%></td>
+          <td><%=item[1]%></td>
+          <td><%=item[2]%></td>
+          <td><%=item[3]%></td>
+          <td><%=item[4]%></td>
+          <td><%=item[5]%></td>
+          <td><%=item[6]%></td>
+          <td><%=item[7]%></td>
+          <td><%=item[8]%></td>
+          <td><%=item[9]%></td>
+          <td><%=item[10]%></td>
           <td><a href="/orderAdmin/delete/<%=item._id%>">删除</a></td>
         </tr>
         <%});%>
@@ -45,5 +78,16 @@
   </div>
 
 </div>
-
+<script>
+  function exportData() {
+    var subform=$("#subform")
+    var queryString=subform.serialize()
+    location.href="/orderAdmin/exportToExcel?"+queryString
+  }
+  function searchData() {
+    var subform=$("#subform")
+    var queryString=subform.serialize()
+    location.href="/orderAdmin/allOrder?"+queryString
+  }
+</script>
 <%include footer%>

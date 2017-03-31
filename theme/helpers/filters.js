@@ -14,7 +14,7 @@ moment.locale(pkg.locale)
 module.exports={
     get fromNow(){
         return function (date){
-            return moment(date).fromNow();
+            return moment(date).utcOffset(8).format("YYYY-MM-DD,hh:mm:ss");
         }
     },
     get gravator(){
