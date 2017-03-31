@@ -133,8 +133,8 @@ function  md5(str) {
  * 维修单数据校验
  */
 function checkApiOrderBody() {
-    let body=this.request.body;
-    let result={status:"success"}
+    var body=this.request.body;
+    var result={status:"success"}
     if(!body||!body.title){
         result.status="fail";
         result.error="报修原因必须填写";
