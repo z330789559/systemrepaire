@@ -2,7 +2,7 @@
  * Created by baozhong on 16/9/6.
  */
 var models=require("../lib/core")
-var fetch=require("../utils/fetch_proxy")
+// var fetch=require("../utils/fetch_proxy")
 
 var $User=models.$User;
 

@@ -5,15 +5,15 @@ var Models =require('../../../lib/core')
 var $Order=Models.$Order
 
 exports.post=function* () {
-    let data=this.request.body;
-    let score=data.score
-    let _id=data._id
-    let result={
+    var data=this.request.body;
+    var score=data.score
+    var _id=data._id
+    var result={
         status:"success",
         error:""
     }
     if(this.session && this.session.user &&_id){
-        let order= yield  $Order.getOrderByTopicId(_id)
+        var order= yield  $Order.getOrderByTopicId(_id)
         if(!order){
             result.status="fail";
             result.error=" 订单不存在"
