@@ -22,7 +22,8 @@ exports.post=function* () {
 
     this.session.user={
         name:data.name,
-        email:data.email
+        email:data.email,
+        account_type:data.account_type
     }
     this.flash={success:"注册成功"}
     return this.redirect("/")
