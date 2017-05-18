@@ -3,7 +3,8 @@
  */
 var Models =require('../../../lib/core')
 var $Order=Models.$Order
-
+var $User=Models.$User
+var $Comment=Models.$Comment;
 exports.post=function* () {
     var data=this.request.body;
     var repaireMethod=data.repaireMethod
@@ -21,8 +22,12 @@ exports.post=function* () {
             try{
                 result.status="success"
                 yield $Order.updateReport(order,repaireMethod,_id);
+                var curorders=yield $Order.getMyRepairingOrderByOperatorName(this.session.user.name,1);
+                var user=yield $User.getUserByName(this.session.user.name);
+                if(curorders.length==0) yield  $User.updateStatusIdel(user);
                 return  this.body=result
             }catch (e){
+                console.log(e)
                 result.status="fail";
                 result.error="发生未知错误"
             }

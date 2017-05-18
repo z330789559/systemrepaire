@@ -17,6 +17,7 @@
   <div class="content <% if(curSection=='orderAdmin'){%> active <%};%>">
     <div class="ui link list" style="padding-left: 1rem;font-size: 0.8em">
       <a class="item <% if(curPage=='allOrder'){ %> active <%};%>"  href="/orderAdmin/allOrder">维修单列表</a>
+      <a class="item <% if(curPage=='exceptionOrder'){ %> active <%};%>"  href="/orderAdmin/exceptionOrder">异常未推送单列表</a>
       <a class="item <% if(curPage=='reason'){ %> active <%};%>" href="/reason">维故障原因</a>
         <a class="item <% if(curPage=='orderCountByReasonCode'){ %> active <%};%>" href="/orderAdmin/orderCountByReasonCode" >每种故障类型的维修时间</a>
         <a class="item <% if(curPage=='orderCountByTitle'){ %> active <%};%>" href="/orderAdmin/orderTimeByEachCatalog">每种针车的故障时间</a>
@@ -29,6 +30,7 @@
   <div class="content <% if(curSection=='comment'){%> active <%};%>">
     <div class="ui link list" style="padding-left: 1rem; font-size: 0.8em">
       <a class="item <% if(curPage=='ordersCountByScore'){ %> active <%};%>" href="/orderAdmin/orderCountByRepaireScore">评分统计</a>
+      <a class="item <% if(curPage=='scoreShow'){ %> active <%};%>" href="/orderAdmin/scoreStatus">评分显示管理</a>
     </div>
   </div>
 </div>

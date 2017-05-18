@@ -33,11 +33,14 @@ var OrderSchema= new Schema({
         name:{type:String,required:true},
         group:{type:String,required:true}
     },
+
+    pushstate:{type:Number,default:0},
+
     repairor:{type:String,required:false},
     /**
      * 评论得分
      */
-    score:{type:Number,default:6},
+    score:{type:Number,default:0},
     scoreDescription:{type:String},
     create_at:{
         type:Date,

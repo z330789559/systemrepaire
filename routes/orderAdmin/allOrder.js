@@ -16,14 +16,14 @@ exports.get=function*() {
     }
 
     var orders=yield $Order.getAllOrders((pageIndex-1) * 10,start,end)
-
+    
     _orders=orders.map(function (item) {
         return [item.title,item.operator.name,moment(item.create_at).utcOffset(8).format("YYYY-MM-DD,hh:mm:ss"),
             item.operator.group,item.reasonCode,item.repaireMethod||"",item.score==6?"未评分":item.score,item.repairor||"",item.update_at?moment(item.update_at).utcOffset(8).format("YYYY-MM-DD,hh:mm:ss"):"",
             item.report_at?moment(item.report_at).utcOffset(8).format("YYYY-MM-DD,hh:mm:ss"):"",item.report_at?moment.utc(moment(item.report_at,"DD/MM/YYYY HH:mm:ss").diff(moment(item.create_at,"DD/MM/YYYY HH:mm:ss"))).format("HH:mm:ss"):""]
     })
     var dataLength=yield $Order.getAllOrdersCountByTime(start,end)
-    yield  this.render("orders",{
+    return yield  this.render("orders",{
         orders:_orders,
         start:start,
         end:end,

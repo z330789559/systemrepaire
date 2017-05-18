@@ -36,6 +36,11 @@ var UserSchema= new Schema({
     group:{
         type:String,
         required:false
+    },
+    status:{
+        type:Number,
+        required:false,
+        default:0
     }
 });
 UserSchema.index({name:1});

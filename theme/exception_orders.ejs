@@ -1,0 +1,42 @@
+
+<% include header%>
+<% var curSection="orderAdmin",
+        curPage="exceptionOrder"%>
+<div class="container">
+  <div class="ui two column centered grid">
+    <div class=" floated left aligned four wide column">
+      <%include partials/menu%>
+    </div>
+
+    <div class="right floated twelve wide column" style="overflow: hidden;text-align: right">
+
+      <table class="ui celled table">
+        <thead>
+
+        <tr>
+          <th>设备</th>
+          <th>操作员</th>
+          <th>报修时间</th>
+          <th>组别</th>
+          <th>故障原因</th>
+          <th>操作</th>
+        </tr></thead>
+        <tbody>
+        <% orders.forEach(function (item) {%>
+        <tr>
+          <td><%=item[0]%></td>
+          <td><%=item[1]%></td>
+          <td><%=item[2]%></td>
+          <td><%=item[3]%></td>
+          <td><%=item[4]%></td>
+          <td><a href="/orderAdmin/delete/<%=item._id%>">删除</a></td>
+        </tr>
+        <%});%>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<%include footer%>

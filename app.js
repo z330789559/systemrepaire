@@ -25,12 +25,14 @@ var router = require("koa-frouter")
 
 // var routerCache = require("koa-router-cache")
 var Interceptor=require("./utils/interceptor")
+var cacheRestore=require("./utils/cache")
+
 var render = require("co-ejs")
 
 var config = require("config-lite")
 
 var merge=require("merge-descriptors")
-
+var task=require("./utils/task")
 var core=require("./lib/core")
 
 var renderConfig=require(config.renderConf)
@@ -40,6 +42,10 @@ merge(renderConfig.locals||{},core,false);
 app.keys=[renderConfig.locals.$app.name]
 
 app.use(errorhandler());
+app.use(function* (next) {
+    this.cacheRestore=this.cacheRestore||cacheRestore;
+    return yield *next;
+})
 
 app.use(cors());
 app.use(bodyparser());
@@ -53,6 +59,9 @@ app.use(session({
 }))
 app.use(Interceptor())
 
+app.use(task({
+    cacheRestore:cacheRestore
+}))
 app.use(flash())
 
 app.use(scheme(config.schemeConf))

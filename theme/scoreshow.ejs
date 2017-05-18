@@ -1,0 +1,46 @@
+
+<% include header%>
+<% var curSection="orderAdmin",
+        curPage="scoreShow"%>
+<div class="container">
+  <div class="ui two column centered grid">
+    <div class=" floated left aligned four wide column">
+      <%include partials/menu%>
+    </div>
+
+    <div class="right floated twelve wide column" style="overflow: hidden;text-align: right">
+      <form method="post" id="subform">
+        <div class="ui form">
+          <div class="four fields">
+            <div class="ui segment">
+              <div class="field">
+                <div class="ui toggle checkbox <% if( scoreshow =='2'){%> checked <%};%>" id="checkbox">
+                  <input type="checkbox" name="scoreshow" id="scoreshow"  value="<%=scoreshow%>" tabindex="0" class="hidden">
+                  <label>是否显示评价</label>
+                </div>
+              </div>
+            </div>
+            <div class="field" style="padding-top: 20px;">
+              <a class="ui basic button right" onclick="submitChange()">提交</a>
+            </div>
+          </div>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+</div>
+<script>
+
+  var checkbox=$("#checkbox"),scoreshow,scoreshow_input=$("#scoreshow");
+  scoreshow_input.val()=="2"?checkbox.checkbox('check'):checkbox.checkbox()
+  function submitChange(){
+    var subform=$("#subform")
+    scoreval=checkbox.hasClass("checked")?"2":"1";
+    scoreshow_input.val(scoreval)
+    subform.attr({"action":"/orderAdmin/scoreStatus"})
+    subform.submit()
+  }
+</script>
+<%include footer%>
